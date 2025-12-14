@@ -19,7 +19,7 @@
             </div>
             <div class="hidden lg:flex items-center space-x-1">
                 <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 bg-white/20"><i class="fas fa-home mr-2"></i> {{__("Home")}}</a>
-                <a href=""  class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 "><i class="fas fa-dollor-sign mr-2"></i> Cash Draws</a>
+                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 "><i class="fas fa-dollor-sign mr-2"></i> Cash Draws</a>
                 <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-gift mr-2"></i> Product Draws</a>
                 <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-trophy mr-2"></i> Winners</a>
                 <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-question mr-2"></i> FAQs</a>
@@ -28,8 +28,8 @@
 
             <div class="hidden lg:flex items-center space-x-4">
 
-            <!-- User Menu -->
-             @auth
+                <!-- User Menu -->
+                @auth
                 <div class="relative ml-3">
                     <div>
                         <button type="button" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -43,9 +43,9 @@
                         </button>
                     </div>
 
-                    <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="user-menu"> 
+                    <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="user-menu">
                         <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " role="menuitem" tabindex="-1">
-                            <i class="fas fa-techometer-alt mr-2"></i>
+                            <i class="fas fa-tachometer-alt mr-2"></i>
                             Dashboard
                         </a>
                         <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " role="menuitem" tabindex="-1">
@@ -62,7 +62,7 @@
                         </a>
                         <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " role="menuitem" tabindex="-1">
                             <i class="fas fa-sign-out-alt mr-2"></i>
-                            Sign Out 
+                            Sign Out
                         </a>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <!-- if not authenticated -->
                 <a href="{{route('login')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10"> {{__("Login")}}</a>
 
-                <a href="{{route('register')}}"  class="bg-white/10 backdrop-blur-md text-white hover:bg:white/20  px-6 py-2 rounded-xl text-sm font-medium transitionall duration-300 border border-white/20">Get Started</a>
+                <a href="{{route('register')}}" class="bg-white/10 backdrop-blur-md text-white hover:bg:white/20  px-6 py-2 rounded-xl text-sm font-medium transitionall duration-300 border border-white/20">Get Started</a>
                 @endauth
 
             </div>
@@ -91,42 +91,42 @@
                     <i class="fas fa-times text-lg"></i>
                 </button>
             </div>
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-home text-white" ></i>
+                    <i class="fas fa-home text-white"></i>
                 </div>
                 Home
             </a>
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-tachometer-alt text-white" ></i>
+                    <i class="fas fa-tachometer-alt text-white"></i>
                 </div>
                 Dashboard
             </a>
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-trophy text-white" ></i>
+                    <i class="fas fa-trophy text-white"></i>
                 </div>
                 My Winnings
             </a>
 
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-wallet text-white" ></i>
+                    <i class="fas fa-wallet text-white"></i>
                 </div>
                 My Wallet
             </a>
 
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-user-circle text-white" ></i>
+                    <i class="fas fa-user-circle text-white"></i>
                 </div>
                 My Profile
             </a>
 
-            <a href="{{route('home')}}"  class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
+            <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 flex items-center">
                 <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mr-3 border border-white/20">
-                    <i class="fas fa-home text-white" ></i>
+                    <i class="fas fa-home text-white"></i>
                 </div>
                 Sign Out
             </a>

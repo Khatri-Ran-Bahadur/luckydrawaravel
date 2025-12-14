@@ -122,5 +122,223 @@
     </div>
 </section>
 
+<!-- Draw Types Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Lucky Draw Type</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">We offer two exciting types of lucky draws to suit your preferences</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Cash Draws -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover border border-gray-100">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-dollar-sign text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Cash Draws</h3>
+                    <p class="text-gray-600">Win instant cash prizes and build your wealth</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Instant cash transfers to your account</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">No waiting time for prize delivery</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Use your winnings however you want</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    @auth
+                    <a href="/cash-draws" class="relative overflow-hidden w-full bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-orange-200 group inline-block">
+                        <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-dollar-sign mr-2"></i>Join Cash Draw
+                        </span>
+                    </a>
+                    @else
+                    <a href="/login" class="relative overflow-hidden w-full bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-orange-200 group inline-block">
+                        <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login to Join
+                        </span>
+                    </a>
+                    @endauth
+                </div>
+            </div>
+
+            <!-- Product Draws -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover border border-gray-100">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-gift text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Product Draws</h3>
+                    <p class="text-gray-600">Win exclusive products and amazing items</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Exclusive and limited edition products</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">High-value electronics and gadgets</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <span class="text-gray-700">Fast shipping to your doorstep</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    @auth
+                    <a href="/product-draws" class="relative overflow-hidden w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-green-200 group inline-block">
+                        <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-gift mr-2"></i>Join Product Draw
+                        </span>
+                    </a>
+                    @else
+                    <a href="/login" class="relative overflow-hidden w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-green-200 group inline-block">
+                        <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login to Join
+                        </span>
+                    </a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+            <p class="text-xl text-gray-600">Simple steps to join and win amazing prizes!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <span class="text-3xl font-bold text-white">1</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Register</h3>
+                <p class="text-gray-600">Create your account in just a few minutes</p>
+            </div>
+            <div class="text-center">
+                <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <span class="text-3xl font-bold text-white">2</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Choose Draw</h3>
+                <p class="text-gray-600">Select between cash or product draws</p>
+            </div>
+            <div class="text-center">
+                <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <span class="text-3xl font-bold text-white">3</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Pay & Wait</h3>
+                <p class="text-gray-600">Pay entry fee and wait for draw date</p>
+            </div>
+            <div class="text-center">
+                <div class="w-24 h-24 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <span class="text-3xl font-bold text-white">4</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Win!</h3>
+                <p class="text-gray-600">Get notified if you're the lucky winner!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Methods Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Secure Payment Methods</h2>
+            <p class="text-xl text-gray-600">We accept multiple secure payment options for your convenience</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center card-hover border border-gray-100">
+                <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-mobile-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Paypal</h3>
+                <p class="text-gray-600">Fast and secure mobile payments in Pakistan</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center card-hover border border-gray-100">
+                <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-mobile-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Stripe</h3>
+                <p class="text-gray-600">Convenient mobile payment solution</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 text-center card-hover border border-gray-100">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i class="fas fa-credit-card text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Credit Cards</h3>
+                <p class="text-gray-600">Secure payment with major credit cards</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 gradient-bg-alt text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-6">Ready to Try Your Luck?</h2>
+        <p class="text-xl mb-10 text-pink-100 max-w-3xl mx-auto">Join thousands of users who are already participating in our exciting lucky draws! Choose your preferred draw type and start winning today.</p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <?php if (session()->get('user_id')): ?>
+                <a href="/cash-draws" class="relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 text-white font-bold text-lg px-12 py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-white/20 group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                    <span class="relative flex items-center justify-center">
+                        <i class="fas fa-dollar-sign mr-3"></i>Join Cash Draw
+                    </span>
+                </a>
+                <a href="/product-draws" class="relative overflow-hidden bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white font-bold text-lg px-12 py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-white/20 group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                    <span class="relative flex items-center justify-center">
+                        <i class="fas fa-gift mr-3"></i>Join Product Draw
+                    </span>
+                </a>
+            <?php else: ?>
+                <a href="/register" class="relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 text-white font-bold text-lg px-12 py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-white/20 group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                    <span class="relative flex items-center justify-center">
+                        <i class="fas fa-user-plus mr-3"></i>Get Started Now
+                    </span>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
 
 @endsection

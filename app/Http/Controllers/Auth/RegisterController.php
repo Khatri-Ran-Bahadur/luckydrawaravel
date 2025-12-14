@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Refferal;
 
 class RegisterController extends Controller
 {
@@ -50,7 +52,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['nullable', 'string', 'max:20'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,10 +67,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $referral_code = $data['referral_code'] ?? null;
+        if (isset($referral_code) && !empty($referral_code)) {
+            $referrer = User::where('referral_code', $data['referral_code'])->first();
+            if ($referrer) {
+                $data['referred_by'] = $referrer->id;
+            }
+        }
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'username' => $data['username'],
+            'phone' => $data['phone'] ?? null,
+            'referral_code' => $data['referral_code'] ?? null,
+            'referred_by' => $data['referred_by'] ?? null,
+            'wallet_id' => (new User())->generateWalletId(),
         ]);
+
+        //if referral code we need to give bonus to referrer and referee
+        if (isset($data['referred_by'])) {
+            //give bonus logic here
+            $this->processRefferalBonus($referrer->id, $user->id, $referral_code);
+        }
+
+        return $user;
+    }
+
+    protected function processRefferalBonus($referrer_id, $referee_id, $referral_code)
+    {
+        try {
+            $bonus_amount = 10.00; // Example bonus amount
+            $r = new Refferal();
+            $r->createReferral($referrer_id, $referee_id, $referral_code, $bonus_amount);
+        } catch (\Exception $e) {
+            //throw $th;
+            Log::error("Error processing referral bonus: " . $e->getMessage());
+        }
     }
 }
