@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,27 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'username',
+        'email',
+        'password',
+        'is_admin',
+        'phone',
+        'status',
+        'login_type',
+        'google_id',
+        'profile_image',
+        'referred_by',
+        'wallet_name',
+        'wallet_number',
+        'wallet_type',
+        'is_special_user',
+        'wallet_active',
+        'wallet_r_code',
+        'last_login_at',
+    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,11 +63,40 @@ class User extends Authenticatable
         ];
     }
 
-    public function generateWalletId()
+
+    public static function booted()
+    {
+        static::creating(function ($user) {
+            if (empty($user->referral_code)) {
+                $user->referral_code = self::generateReferralCode();
+            }
+            if (empty($user->wallet_id)) {
+                $user->wallet_id = self::generateWalletId();
+            }
+        });
+    }
+
+    /**
+     * Generate a unique referral code.
+     */
+    public static function generateReferralCode($length = 8)
     {
         do {
-            $id = strtoupper(uniqid('WLT'));
-        } while ($this->where('wallet_id', $id)->exists());
-        return $id;
+            $code = 'REF-' . Str::upper(Str::random($length));
+        } while (self::where('referral_code', $code)->exists());
+
+        return $code;
+    }
+
+    /**
+     * Generate a unique wallet ID.
+     */
+    public static function generateWalletId($length = 8)
+    {
+        do {
+            $walletId = 'WLT-' . Str::upper(Str::random($length));
+        } while (self::where('wallet_id', $walletId)->exists());
+
+        return $walletId;
     }
 }

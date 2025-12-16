@@ -8,7 +8,12 @@ export default defineConfig({
             darkMode: false,
         }),
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
+            input: [
+                "resources/css/app.css",
+                "resources/css/front.css",
+                "resources/css/admin.css",
+                "resources/js/app.js",
+            ],
             refresh: true,
         }),
     ],
