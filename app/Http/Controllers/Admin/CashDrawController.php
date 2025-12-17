@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\CashDraw;
+use App\Http\Requests\CashDrawStoreUpdateRequest;
 
 class CashDrawController extends Controller
 {
@@ -12,7 +14,8 @@ class CashDrawController extends Controller
      */
     public function index()
     {
-        return view('admin.cashdraws.index');
+        $draws = CashDraw::latest()->paginate(10);
+        return view('admin.cashdraws.index', compact('draws'));
     }
 
     /**
@@ -20,15 +23,16 @@ class CashDrawController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cashdraws.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CashDrawStoreUpdateRequest $request)
     {
-        //
+        CashDraw::create($request->validated());
+        return redirect()->route('admin.cashdraws.index')->with('success', 'Cash draw created successfully');
     }
 
     /**
@@ -36,7 +40,8 @@ class CashDrawController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $cashdraw = CashDraw::findOrFail($id);
+        return view('admin.cashdraws.show', compact('draw'));
     }
 
     /**
@@ -44,15 +49,18 @@ class CashDrawController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cashdraw = CashDraw::findOrFail($id);
+        return view('admin.cashdraws.edit', compact('cashdraw'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CashDrawStoreUpdateRequest $request, string $id)
     {
-        //
+        $draw = CashDraw::findOrFail($id);
+        $draw->update($request->validated());
+        return redirect()->route('admin.cashdraws.index')->with('success', 'Cash draw updated successfully');
     }
 
     /**
@@ -60,6 +68,8 @@ class CashDrawController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $draw = CashDraw::findOrFail($id);
+        $draw->delete();
+        return redirect()->route('admin.cashdraws.index')->with('success', 'Cash draw deleted successfully');
     }
 }

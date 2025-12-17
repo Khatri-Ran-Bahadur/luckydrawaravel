@@ -15,8 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @vite(['resources/css/admin.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @stack('styles')
 </head>
 
@@ -142,6 +142,14 @@
         function logout() {
             document.getElementById('logoutFormHeader').submit();
         }
+
+        setTimeout(function() {
+            document.querySelector('.success-msg').classList.add('hidden');
+        }, 5000);
+
+        setTimeout(function() {
+            document.querySelector('.failed-msg').classList.add('hidden');
+        }, 5000);
     </script>
 </body>
 

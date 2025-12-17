@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProductDraw;
 
 class ProductDrawController extends Controller
 {
@@ -12,7 +13,8 @@ class ProductDrawController extends Controller
      */
     public function index()
     {
-        return view('admin.productdraws.index');
+        $draws = ProductDraw::latest()->paginate(10);
+        return view('admin.productdraws.index', compact('draws'));
     }
 
     /**
@@ -20,15 +22,24 @@ class ProductDrawController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.productdraws.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductDrawStoreRequest $request)
     {
-        //
+        // store image
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+            $request->merge(['product_image' => $image_name]);
+        }
+
+        ProductDraw::create($request->validated());
+        return redirect()->route('admin.productdraws.index')->with('success', 'Product draw created successfully');
     }
 
     /**
@@ -36,7 +47,8 @@ class ProductDrawController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $productdraw = ProductDraw::findOrFail($id);
+        return view('admin.productdraws.show', compact('productdraw'));
     }
 
     /**
@@ -44,15 +56,29 @@ class ProductDrawController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $productdraw = ProductDraw::findOrFail($id);
+        return view('admin.productdraws.edit', compact('productdraw'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductDrawUpdateRequest $request, string $id)
     {
-        //
+        $productdraw = ProductDraw::findOrFail($id);
+        // update image
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+            $request->merge(['product_image' => $image_name]);
+            // delete old image
+            if ($productdraw->product_image) {
+                unlink(public_path('images/' . $productdraw->product_image));
+            }
+        }
+        $productdraw->update($request->validated());
+        return redirect()->route('admin.productdraws.index')->with('success', 'Product draw updated successfully');
     }
 
     /**
@@ -60,6 +86,12 @@ class ProductDrawController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $productdraw = ProductDraw::findOrFail($id);
+        // delete image
+        if ($productdraw->product_image) {
+            unlink(public_path('images/' . $productdraw->product_image));
+        }
+        $productdraw->delete();
+        return redirect()->route('admin.productdraws.index')->with('success', 'Product draw deleted successfully');
     }
 }
