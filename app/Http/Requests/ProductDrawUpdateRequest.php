@@ -28,10 +28,7 @@ class ProductDrawUpdateRequest extends FormRequest
             'description' => 'nullable|string',
             'entry_fee' => 'required|numeric',
             'product_price' => 'required|numeric',
-            'draw_date' => 'required|date',
-            'is_manual_selection' => 'required|boolean',
-            'status' => 'required|in:active,inactive,completed',
-            'total_winners' => 'required|integer',
+            'draw_date' => 'required|date'
         ];
     }
 }

@@ -60,8 +60,8 @@
                         <tr class="hover:bg-gray-50 transition-colors">
                             <td class="px-6 py-4">
                                     <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                                            <i class="fas fa-dollar-sign text-green-600 text-lg"></i>
+                                        <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center overflow-hidden">
+                                            <img src="{{asset('storage/' . $draw->product_image)}}" alt="Product Image" class="w-full h-full object-cover rounded-xl">
                                         </div>
                                         <div>
                                             <div class="text-sm font-medium text-gray-900">{{$draw->title}}</div>
@@ -108,13 +108,13 @@
 
                                 <td class="px-6 py-4">
                                     <div class="flex items-center space-x-3">
-                                        <a href="{{route('admin.cashdraws.show',$draw->id)}}"
+                                        <a href="{{route('admin.productdraws.show',$draw->id)}}"
                                             class="text-green-600 hover:text-green-900 transition-colors"
                                             title="View Details">
                                             <i class="fas fa-eye text-lg"></i>
                                         </a>
                                         @if ($draw->status !== 'completed')
-                                            <a href="{{route('admin.cashdraws.edit',$draw->id)}}"
+                                            <a href="{{route('admin.productdraws.edit',$draw->id)}}"
                                                 class="text-blue-600 hover:text-blue-900 transition-colors"
                                                 title="Edit">
                                                 <i class="fas fa-edit text-lg"></i>
@@ -133,12 +133,12 @@
                                         @endif
                                         @if ($draw->status !== 'completed')
                                             <!-- destroy method are DELETE not get method -->
-                                            <form action="{{route('admin.cashdraws.destroy',$draw->id)}}" method="POST">
+                                            <form action="{{route('admin.productdraws.destroy',$draw->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900 transition-colors"
                                                     title="Delete"
-                                                    onclick="return confirm('Are you sure you want to delete this cash draw?')">
+                                                    onclick="return confirm('Are you sure you want to delete this product draw?')">
                                                     <i class="fas fa-trash text-lg"></i>
                                                 </button>
                                             </form>

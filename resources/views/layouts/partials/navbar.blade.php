@@ -18,12 +18,15 @@
                 </a>
             </div>
             <div class="hidden lg:flex items-center space-x-1">
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 bg-white/20"><i class="fas fa-home mr-2"></i> {{__("Home")}}</a>
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 "><i class="fas fa-dollor-sign mr-2"></i> Cash Draws</a>
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-gift mr-2"></i> Product Draws</a>
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-trophy mr-2"></i> Winners</a>
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-question mr-2"></i> FAQs</a>
-                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 "><i class="fas fa-envelope mr-2"></i> Contact</a>
+                <a href="{{route('home')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 {{request()->routeIs('home')? 'bg-white/20': ''}}"><i class="fas fa-home mr-2"></i> {{__("Home")}}</a>
+
+                <a href="{{route('cash-draws')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white/10 {{request()->routeIs('cash-draws')? 'bg-white/20': ''}}  "><i class="fas fa-dollor-sign mr-2"></i> Cash Draws</a>
+
+
+                <a href="{{route('product-draws')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 {{request()->routeIs('product-draws')? 'bg-white/20': ''}}"><i class="fas fa-gift mr-2"></i> Product Draws</a>
+                <a href="{{route('winners')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 {{request()->routeIs('winners')? 'bg-white/20': ''}}"><i class="fas fa-trophy mr-2"></i> Winners</a>
+                <a href="" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 {{request()->routeIs('faqs')? 'bg-white/20': ''}}"><i class="fas fa-question mr-2"></i> FAQs</a>
+                <a href="{{route('contact-us')}}" class="text-white/90 hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 over:bg-white/10 {{request()->routeIs('contact-us')? 'bg-white/20': ''}}"><i class="fas fa-envelope mr-2"></i> Contact</a>
             </div>
 
             <div class="hidden lg:flex items-center space-x-4">

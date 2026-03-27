@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductDraw;
+use App\Http\Requests\ProductDrawStoreRequest;
+use App\Http\Requests\ProductDrawUpdateRequest;
+use App\Services\ImageUploader;
 
 class ProductDrawController extends Controller
 {
@@ -30,15 +33,13 @@ class ProductDrawController extends Controller
      */
     public function store(ProductDrawStoreRequest $request)
     {
+        
         // store image
-        if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $image_name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
-            $request->merge(['product_image' => $image_name]);
-        }
-
-        ProductDraw::create($request->validated());
+       $data=$request->validated();
+       if ($request->hasFile('product_image')) {
+           $data['product_image'] = ImageUploader::upload('productdraws',$request->file('product_image'));
+       }
+        ProductDraw::create($data);
         return redirect()->route('admin.productdraws.index')->with('success', 'Product draw created successfully');
     }
 
@@ -56,8 +57,8 @@ class ProductDrawController extends Controller
      */
     public function edit(string $id)
     {
-        $productdraw = ProductDraw::findOrFail($id);
-        return view('admin.productdraws.edit', compact('productdraw'));
+        $productDraw = ProductDraw::findOrFail($id);
+        return view('admin.productdraws.edit', compact('productDraw'));
     }
 
     /**
@@ -67,17 +68,16 @@ class ProductDrawController extends Controller
     {
         $productdraw = ProductDraw::findOrFail($id);
         // update image
+        $data=$request->validated();
         if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $image_name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
-            $request->merge(['product_image' => $image_name]);
-            // delete old image
-            if ($productdraw->product_image) {
-                unlink(public_path('images/' . $productdraw->product_image));
-            }
+            $data['product_image'] = ImageUploader::upload('productdraws',$request->file('product_image'));
         }
-        $productdraw->update($request->validated());
+        // delete old image
+        if ($productdraw->product_image) {
+            ImageUploader::delete($productdraw->product_image);
+        }
+
+        $productdraw->update($data);
         return redirect()->route('admin.productdraws.index')->with('success', 'Product draw updated successfully');
     }
 
@@ -89,7 +89,7 @@ class ProductDrawController extends Controller
         $productdraw = ProductDraw::findOrFail($id);
         // delete image
         if ($productdraw->product_image) {
-            unlink(public_path('images/' . $productdraw->product_image));
+            ImageUploader::delete($productdraw->product_image);
         }
         $productdraw->delete();
         return redirect()->route('admin.productdraws.index')->with('success', 'Product draw deleted successfully');

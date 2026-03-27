@@ -70,15 +70,21 @@ $route=str_replace('admin.','',$route);
             <!-- User Management -->
             <div class="space-y-2">
                 <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">User Management</h3>
-                <a href="" class="nav-item nav-item-inactive">
+                <a href="{{route('admin.users.index')}}" class="nav-item {{in_array($route,['users'])?'nav-item-active':'nav-item-innactive'}}">
                     <i class="fas fa-users mr-3 h-5 w-5 flex-shrink-0"></i>
                     All Users
                 </a>
-                <a href="" class="nav-item nav-item-inactive">
+
+                <a href="{{route('admin.users.special-users-request')}}" class="nav-item {{in_array($route,['users'])?'nav-item-active':'nav-item-innactive'}}">
+                    <i class="fas fa-star mr-3 h-5 w-5 flex-shrink-0"></i>
+                    Special Users Request
+                </a>
+
+                <a href="{{route('admin.users.special-users')}}" class="nav-item {{in_array($route,['users'])?'nav-item-active':'nav-item-innactive'}}">
                     <i class="fas fa-star mr-3 h-5 w-5 flex-shrink-0"></i>
                     Special Users
                 </a>
-                <a href="" class="nav-item nav-item-inactive">
+                <a href="{{route('admin.admins.index')}}" class="nav-item {{in_array($route,['admins'])?'nav-item-active':'nav-item-innactive'}}">
                     <i class="fas fa-user-shield mr-3 h-5 w-5 flex-shrink-0"></i>
                     Admin Users
                 </a>

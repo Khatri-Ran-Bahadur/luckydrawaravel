@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -98,5 +99,30 @@ class User extends Authenticatable
         } while (self::where('wallet_id', $walletId)->exists());
 
         return $walletId;
+    }
+
+    public function scopeIsAdmin($query)
+    {
+        return $query->where('is_admin', 1);
+    }
+
+    public function scopeIsSpecialUser($query)
+    {
+        return $query->where('is_special_user', 1);
+    }
+
+    public function scopeIsUser($query)
+    {
+        return $query->where('is_admin', 0)->where('is_special_user', 0);
+    }
+
+    public function scopeNotAdmin($query)
+    {
+        return $query->where('is_admin', '!=', 1);
+    }
+
+    public function wallet(): HasOne
+    {
+        return $this->hasOne(Wallet::class, 'user_id');
     }
 }

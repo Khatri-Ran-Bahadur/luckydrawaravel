@@ -75,6 +75,8 @@
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         // Sidebar functionality
         function toggleSidebar() {
@@ -151,6 +153,7 @@
             document.querySelector('.failed-msg').classList.add('hidden');
         }, 5000);
     </script>
+    @stack('scripts')
 </body>
 
 </html>
