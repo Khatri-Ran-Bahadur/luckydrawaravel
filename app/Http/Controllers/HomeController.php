@@ -35,13 +35,50 @@ class HomeController extends Controller
 
     public function cashDraws()
     {
+        $perPage = 10;
         $this->cashDraw->updateExpiredDraws();
-        return view('web.cashdraws');
+        $recentWinners = $this->cashDraw
+            ->query()
+            ->recentWinners($perPage)
+            ->latest()
+            ->get()
+            ->flatMap(function ($draw) {
+                return $draw->winners;
+            })
+            ->take($perPage)
+            ->values();
+        $data = [
+            'cash_draws' => $this->cashDraw->query()->activeDraws()->withCount(['entries', 'approvedWinners', 'claimedWinners'])->get(),
+            'recent_winners' => $recentWinners,
+            'completed_draws' => $this->cashDraw->query()->completedDraws()->take(10)->get(),
+            'upcoming_draws' => $this->cashDraw->upcomingDraws()->take(10)->get(),
+        ];
+        return view('web.cashdraws', $data);
     }
 
     public function productDraws()
     {
-        return view('web.productdraws');
+        $perPage = 10;
+        $this->productDraw->updateExpiredDraws();
+
+        $recentWinners = $this->productDraw
+            ->query()
+            ->recentWinners($perPage)
+            ->latest()
+            ->get()
+            ->flatMap(function ($draw) {
+                return $draw->winners;
+            })
+            ->take($perPage)
+            ->values();
+
+        $data = [
+            'product_draws' => $this->productDraw->query()->activeDraws()->withCount(['entries', 'approvedWinners', 'claimedWinners'])->get(),
+            'recent_winners' => $recentWinners,
+            'completed_draws' => $this->productDraw->query()->completedDraws()->take(10)->get(),
+            'upcoming_draws' => $this->productDraw->upcomingDraws()->take(10)->get(),
+        ];
+        return view('web.productdraws', $data);
     }
 
     public function winners()
