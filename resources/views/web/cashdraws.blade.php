@@ -65,7 +65,7 @@
                             <i class="fas fa-check-circle mr-2"></i>Already Entered
                         </button>
                         @else
-                        <a href="{{ url('cash-draw/' . $draw->id) }}" class="block w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition-all duration-200 transform hover:-translate-y-1">
+                        <a href="{{ route('cash-draw-detail',$draw->id) }}" class="block w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl text-center transition-all duration-200 transform hover:-translate-y-1">
                             <i class="fas fa-dollar-sign mr-2"></i>Join Cash Draw
                         </a>
                         @endif

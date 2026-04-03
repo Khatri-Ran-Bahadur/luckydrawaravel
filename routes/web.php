@@ -8,7 +8,10 @@ use App\Http\Controllers\User\UserController;
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/cash-draws', 'cashDraws')->name('cash-draws');
+    Route::get('/cash-draws/{id}', 'cashDrawDetail')->name('cash-draw-detail');
+    Route::post("/cash-draws/{id}/enter", "cashDrawEnter")->name('cash-draw-enter');
     Route::get('/product-draws', 'productDraws')->name('product-draws');
+    Route::post("/product-draws/{id}/enter", "productDrawEnter")->name('product-draw-enter');
     Route::get('/winners', 'winners')->name('winners');
     Route::get('/contact-us', 'contactUs')->name('contact-us');
     Route::get('/about-us', 'aboutUs')->name('about-us');

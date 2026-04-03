@@ -169,7 +169,7 @@
 <script>
     async function joinProductDraw(drawId, entryFee) {
         try {
-            const response = await fetch(`{{ url('product-draw/enter') }}/${drawId}`, {
+            const response = await fetch(`{{ url('product-draws') }}/${drawId}/enter`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
