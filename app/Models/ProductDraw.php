@@ -84,7 +84,7 @@ class ProductDraw extends Model
     }
 
 
-    public function updateExpiredDraws()
+    public static function updateExpiredDraws()
     {
         return static::query()
             ->where('status', 'active')

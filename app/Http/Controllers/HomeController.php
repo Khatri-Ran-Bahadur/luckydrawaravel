@@ -120,7 +120,41 @@ class HomeController extends Controller
 
     public function winners()
     {
-        return view('web.winner');
+        $allWinners = $this->winner->getAllWinners(20);
+        $cashWinners = collect($allWinners)->where('draw_type', 'cash')->values()->all();
+        $productWinners = collect($allWinners)->where('draw_type', 'product')->values()->all();
+        $userWinnings = null;
+        $userTotalWinnings = 0;
+        $userClaimStatus = [];
+
+        if (Auth::id()) {
+            $userId = Auth::id();
+
+            // Get user's winnings
+            $userWinnings = $this->winner->getUserWinnings($userId);
+
+            // Get total winnings amount
+            $userTotalWinnings = $this->winner->getUserTotalWinnings($userId);
+
+            // Get claim status for each winning
+            foreach ($userWinnings as $winning) {
+                $userClaimStatus[$winning['id']] = [
+                    'is_claimed' => $winning['is_claimed'],
+                    'claim_approved' => $winning['claim_approved'],
+                    'claim_details' => $winning['claim_details'] ?? null
+                ];
+            }
+        }
+        $data = [
+            'winners' => $allWinners,
+            'cash_winners' => $cashWinners,
+            'product_winners' => $productWinners,
+            'user_winnings' => $userWinnings,
+            'user_total_winnings' => $userTotalWinnings,
+            'user_claim_status' => $userClaimStatus,
+            'is_logged_in' => Auth::id() ? true : false
+        ];
+        return view('web.winner', $data);
     }
 
     public function contactUs()

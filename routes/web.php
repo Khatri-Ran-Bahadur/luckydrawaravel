@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\UserController;
-
+use App\Http\Controllers\User\WalletController;
+use App\Http\Controllers\User\SpecialUserController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
@@ -31,6 +32,28 @@ Route::group(['middleware' => ['user'], 'as' => 'user.', 'prefix' => 'user'], fu
         Route::get('/winnings', 'winnings')->name('winnings');
         Route::post('/update', 'updateProfile')->name('update-profile');
         Route::post('/change-password', 'changePassword')->name('change-password');
+    });
+
+    Route::controller(WalletController::class)->group(function () {
+        Route::group(['prefix' => 'wallet', 'as' => 'wallet.'], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/deposit', 'deposit')->name('deposit');
+            Route::post('/deposit', 'processDeposit')->name('deposit.process');
+            Route::get('/withdraw', 'withdraw')->name('withdrawal');
+            Route::post('/withdraw', 'processWithdraw')->name('withdrawal.process');
+
+            Route::get('/sendmoney', 'sendmoney')->name('sendmoney');
+            Route::post('/sendmoney', 'processSendmoney')->name('sendmoney.process');
+
+            Route::get('/user-requests', 'userRequests')->name('user-requests');
+            Route::post('/user-requests', 'processUserRequests')->name('user-requests.process');
+        });
+
+        // Special User Request Routes
+        Route::controller(SpecialUserController::class)->group(function () {
+            Route::get('/request-special-user', 'create')->name('request-special-user.create');
+            Route::post('/request-special-user', 'store')->name('request-special-user.store');
+        });
     });
 });
 
